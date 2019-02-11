@@ -64,4 +64,9 @@ public enum SshConnectionType {
      */
     INTERACTIVE_SUDO,
 
+    /**
+     * A Centrify/DZDO connection based on INTERACTIVE_SUDO
+     */
+    DZDO
+
 }

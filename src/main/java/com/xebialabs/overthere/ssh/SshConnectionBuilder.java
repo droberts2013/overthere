@@ -491,6 +491,16 @@ public class SshConnectionBuilder implements OverthereConnectionBuilder {
      */
     public static final String LOCAL_PORT = "localPort";
 
+    /**
+     * For a Centrify/DZDO connection
+     */
+    public static final String DZDO_COMMAND_PREFIX = "dzdoCommandPrefix";
+
+    /**
+     * For a Centrify/DZDO connection
+     */
+    public static final String DZDO_COMMAND_PREFIX_DEFAULT = "dzdo -u {0}";
+
     protected SshConnection connection;
 
     public SshConnectionBuilder(String type, ConnectionOptions options, AddressPortMapper mapper) {
@@ -517,6 +527,9 @@ public class SshConnectionBuilder implements OverthereConnectionBuilder {
                 break;
             case INTERACTIVE_SUDO:
                 connection = new SshInteractiveSudoConnection(type, options, mapper);
+                break;
+            case DZDO:
+                connection = new SshDzdoConnection(type, options, mapper);
                 break;
             default:
                 throw new IllegalArgumentException("Unknown SSH connection type " + sshConnectionType);
